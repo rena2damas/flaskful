@@ -2,21 +2,13 @@ from flask import Blueprint, MethodView
 
 
 class SwaggerUIView(MethodView):
-    """
-    The /apidocs
-    """
 
     def __init__(self, *args, **kwargs):
         view_args = kwargs.pop('view_args', {})
         self.config = view_args.get('config')
-        super(APIDocsView, self).__init__(*args, **kwargs)
+        super(SwaggerUIView, self).__init__(*args, **kwargs)
 
     def get(self):
-        """
-        The data under /apidocs
-        json or Swagger UI
-        """
-        base_endpoint = self.config.get('endpoint', 'flasgger')
         specs = [
             {
                 "url": url_for("swagger.ui"),
@@ -27,29 +19,10 @@ class SwaggerUIView(MethodView):
         ]
         data = {
             "specs": specs,
-            "title": self.config.get('title', 'Swagger')
-            'flasgger_config': self.config,
-            'json': json,
-            'flasgger_version': __version__,
+            "title": self.config.get('title', 'Swagger'),
             'favicon': self.config.get(
                 'favicon',
                 url_for('swagger.static', filename='favicon-32x32.png')
-            ),
-            'swagger_ui_bundle_js': url_for(
-                'swagger.static',
-                filename='swagger-ui-bundle.js'
-            ),
-            'swagger_ui_standalone_preset_js': url_for(
-                'swagger.static',
-                filename='swagger-ui-standalone-preset.js'
-            ),
-            'jquery_js': url_for(
-                'swagger.static',
-                filename='lib/jquery.min.js'
-            ),
-            'swagger_ui_css': url_for(
-                'swagger.static',
-                filename='swagger-ui.css'
             )
         }
         return render_template(
@@ -98,17 +71,6 @@ class Swagger:
 
         # self.load_apispec(app)
         self.register_swagger(app)
-        self.add_headers(app)
-
-        if self.parse:
-            if RequestParser is None:
-                raise RuntimeError('Please install flask_restful')
-            self.parsers = {}
-            self.schemas = {}
-            self.parse_request(app)
-
-        self._configured = True
-        app.swag = self
 
     def register_views(self, app):
         """Register API ."""
@@ -117,19 +79,16 @@ class Swagger:
             blueprint = Blueprint(
                 "swagger",
                 __name__,
-                url_prefix=self.config.get('url_prefix', None),
-                template_folder="swagger-ui/templates",
-                static_folder="swagger-ui/static",
-                static_url_path=self.config.get('static_url_path', None)
+                url_prefix=self.config.get('url_prefix', None)
             )
 
             blueprint.add_url_rule(
                 rule=self.config["swaggerui_route"],
                 endpoint='ui',
-                view_func=wrap_view(SwaggerUIView().as_view(
+                view_func=SwaggerUIView().as_view(
                     name="swaggerui",
                     view_args=dict(config=self.config)
-                ))
+                )
             )
 
         else:
