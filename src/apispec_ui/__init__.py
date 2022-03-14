@@ -3,4 +3,4 @@ try:
 except ImportError:
     import importlib_metadata as metadata  # python<=3.7
 
-__version__ = metadata.version("flaskful")
+__version__ = metadata.version("apispec-ui")
