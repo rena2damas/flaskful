@@ -6,20 +6,16 @@ class SwaggerUIView(MethodView):
     def __init__(self, *args, **kwargs):
         view_args = kwargs.pop('view_args', {})
         self.config = view_args.get('config')
+        self.apispec = view_args.get('apispec')
         super(SwaggerUIView, self).__init__(*args, **kwargs)
 
     def get(self):
-        specs = [
-            {
-                "url": url_for("swagger.ui"),
-                "title": spec.get('title', 'API Spec 1'),
-                "version": spec.get("version", '0.0.1'),
-                "endpoint": spec.get("ui")
-            }
-        ]
+        apispec = self.apispec
         data = {
-            "specs": specs,
-            "title": self.config.get('title', 'Swagger'),
+            "url": url_for("swagger.ui"),
+            "title": apispec["info"]["title"],
+            "version": apispec["info"]["version"],
+            "description": apispec["info"]["description"],
             'favicon': self.config.get(
                 'favicon',
                 url_for('swagger.static', filename='favicon-32x32.png')
@@ -34,9 +30,9 @@ class SwaggerUIView(MethodView):
 class Swagger:
     DEFAULT_CONFIG = {
         "headers": [],
-        "apispecs": {
-            "endpoint": 'specs',
-            "route": '/swagger.json',
+        "apispec": {
+            "endpoint": 'apispec',
+            "route": '/specs.json',
             "rule_filter": lambda rule: True,  # all in
             "model_filter": lambda tag: True,  # all in
         },
@@ -47,12 +43,12 @@ class Swagger:
 
     def __init__(
             self,
-            apispecs,
+            apispec,
             app=None,
             config=None,
             merge=False
     ):
-        self.apispecs = apispecs
+        self.apispec = apispec
         self._init_config(config, merge)
         if app:
             self.init_app(app)
@@ -72,9 +68,7 @@ class Swagger:
         # self.load_apispec(app)
         self.register_swagger(app)
 
-    def register_views(self, app):
-        """Register API ."""
-
+    def register_swaggerui(self, app):
         if self.config["swaggerui"]:
             blueprint = Blueprint(
                 "swagger",
@@ -87,23 +81,21 @@ class Swagger:
                 endpoint='ui',
                 view_func=SwaggerUIView().as_view(
                     name="swaggerui",
-                    view_args=dict(config=self.config)
+                    view_args=dict(config=self.config, apispec=self.apispec)
                 )
             )
 
         else:
             blueprint = Blueprint('swagger', __name__)
 
-        for spec in self.config['specs']:
-            self.endpoints.append(spec['endpoint'])
-            blueprint.add_url_rule(
-                spec['route'],
-                spec['endpoint'],
-                view_func=wrap_view(APISpecsView.as_view(
-                    spec['endpoint'],
-                    loader=partial(
-                        self.get_apispecs, endpoint=spec['endpoint'])
-                ))
-            )
+        apispec = self.config.apispec
+        blueprint.add_url_rule(
+            rule=apispec['route'],
+            endpoint=apispec['endpoint'],
+            view_func=wrap_view(APISpecsView.as_view(
+                name=apispec['endpoint'],
+                view_args=self.apispec
+            ))
+        )
 
         app.register_blueprint(blueprint)
