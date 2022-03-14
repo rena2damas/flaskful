@@ -39,9 +39,10 @@ gunicorn = "^20.1.0"
 python = "^3.7"
 
 [tool.poetry.dev-dependencies]
+apispec = { extras = ["flask"], version = "^5.1.1" }
 coverage = "^6.3.2"
 pre-commit = "^2.17.0"
-pytest = "^7.0.1"
+pytest = "^7.1.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
