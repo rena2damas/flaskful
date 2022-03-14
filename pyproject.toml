@@ -35,6 +35,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 environs = "^9.5.0"
+Flask = { extras = ["flask"], version = "^2.0.3", optional = true }
 gunicorn = "^20.1.0"
 python = "^3.7"
 
