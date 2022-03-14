@@ -54,12 +54,13 @@ class Swagger:
             self.init_app(app)
 
     def _init_config(self, config, merge):
+        default_config = self.DEFAULT_CONFIG.copy()
         if config and merge:
-            self.config = dict(self.DEFAULT_CONFIG.copy(), **config)
+            self.config = dict(default_config, **config)
         elif config and not merge:
             self.config = config
         elif not config:
-            self.config = self.DEFAULT_CONFIG.copy()
+            self.config = default_config
         self.config.update(app.config.get('SWAGGER', {}))
 
     def init_app(self, app):
