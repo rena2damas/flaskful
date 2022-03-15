@@ -6,8 +6,8 @@ class SwaggerUIView(MethodView):
 
     def __init__(self, *args, **kwargs):
         view_args = kwargs.pop('view_args', {})
-        self.config = view_args.get('config')
         self.apispec = view_args.get('apispec')
+        self.config = view_args.get('config')
         super(SwaggerUIView, self).__init__(*args, **kwargs)
 
     def get(self):
