@@ -16,7 +16,7 @@ class SwaggerUIView(MethodView):
             "url": url_for("swagger.specs"),
             "title": specs["info"]["title"],
             "version": specs["info"]["version"],
-            "description": specs["info"]["description"],
+            "description": specs["info"].get("description"),
             "favicon": self.config.get(
                 'favicon',
                 url_for('swagger.static', filename='favicon-32x32.png')
