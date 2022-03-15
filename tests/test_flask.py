@@ -2,6 +2,7 @@ import pytest
 
 from apispec import APISpec
 from flask import Flask, url_for
+from werkzeug.routing import BuildError
 
 from apispec_ui.flask import Swagger
 
@@ -65,3 +66,14 @@ class TestFlask:
 
         assert url_for("swagger.ui") == "/test/docs/"
         assert url_for("swagger.specs") == "/test/docs/specs.json"
+
+    def test_no_swagger_ui(self, app, spec):
+        Swagger(
+            app=app,
+            apispec=spec,
+            config={"swaggerui": False}
+        )
+
+        assert url_for("swagger.specs") == "/swagger/specs.json"
+        with pytest.raises(BuildError):
+            url_for("swagger.ui")
