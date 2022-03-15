@@ -7,11 +7,11 @@ class SwaggerUIView(MethodView):
     def __init__(self, *args, **kwargs):
         view_args = kwargs.pop('view_args', {})
         self.config = view_args.get('config')
-        self.apispecs = view_args.get('apispecs')
+        self.apispec = view_args.get('apispec')
         super(SwaggerUIView, self).__init__(*args, **kwargs)
 
     def get(self):
-        specs = self.apispecs.to_dict()
+        specs = self.apispec.to_dict()
         data = {
             "url": url_for("swagger.specs"),
             "title": specs["info"]["title"],
@@ -30,11 +30,11 @@ class SwaggerSpecsView(MethodView):
 
     def __init__(self, *args, **kwargs):
         view_args = kwargs.pop('view_args', {})
-        self.apispecs = view_args['apispecs']
+        self.apispec = view_args['apispec']
         super(SwaggerSpecsView, self).__init__(*args, **kwargs)
 
     def get(self):
-        return jsonify(self.apispecs.to_dict())
+        return jsonify(self.apispec.to_dict())
 
 
 class Swagger:
@@ -46,11 +46,11 @@ class Swagger:
 
     def __init__(
             self,
-            apispecs,
+            apispec,
             app=None,
             config=None
     ):
-        self.apispecs = apispecs
+        self.apispec = apispec
         self.app = app
         default_config = self.DEFAULT_CONFIG.copy()
         self.config = dict(default_config, **config) if config else default_config
@@ -81,7 +81,7 @@ class Swagger:
                 endpoint='ui',
                 view_func=SwaggerUIView().as_view(
                     name="swaggerui",
-                    view_args=dict(config=self.config, apispecs=self.apispecs)
+                    view_args=dict(config=self.config, apispec=self.apispec)
                 )
             )
 
@@ -93,7 +93,7 @@ class Swagger:
             rule=f"{self.config['swagger_route']}/specs.json",
             view_func=SwaggerSpecsView.as_view(
                 name="specs",
-                view_args=dict(apispecs=self.apispecs)
+                view_args=dict(apispec=self.apispec)
             )
         )
 
