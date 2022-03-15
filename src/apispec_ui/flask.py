@@ -48,24 +48,14 @@ class Swagger:
             self,
             apispecs,
             app=None,
-            config=None,
-            merge=False
+            config=None
     ):
         self.apispecs = apispecs
-        self.app = None
-
-        self._init_config(config, merge)
+        self.app = app
+        default_config = self.DEFAULT_CONFIG.copy()
+        self.config = dict(default_config, **config) if config else default_config
         if app:
             self.init_app(app)
-
-    def _init_config(self, config, merge):
-        default_config = self.DEFAULT_CONFIG.copy()
-        if config and merge:
-            self.config = dict(default_config, **config)
-        elif config and not merge:
-            self.config = config
-        elif not config:
-            self.config = default_config
 
     def init_app(self, app):
         self.app = app
