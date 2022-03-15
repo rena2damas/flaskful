@@ -17,14 +17,14 @@ Features
 - Supports the OpenAPI Specification (versions 2 and 3)
 - Currently supported frameworks include:
 
-    - Flask
+  - Flask
 
 Installation
 ============
 
 Install the package directly from ``PyPI`` (recommended):
 
-..
+.. code::
 
     pip install -U apispec-ui
 
@@ -32,7 +32,7 @@ Install the package directly from ``PyPI`` (recommended):
 Plugin dependencies like ``apispec`` and ``Flask`` are not installed with the package
 by default. To have it installed, do like so:
 
-..
+.. code::
 
     pip install -U apispec-ui[apispec,Flask]
 
