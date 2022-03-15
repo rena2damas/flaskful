@@ -73,7 +73,7 @@ class Swagger:
                 endpoint="ui",
                 view_func=SwaggerUIView().as_view(
                     name="swaggerui",
-                    view_args=dict(config=self.config, apispec=self.apispec),
+                    view_args={"config": self.config, "apispec": self.apispec},
                 ),
             )
 
@@ -84,7 +84,7 @@ class Swagger:
         blueprint.add_url_rule(
             rule=f"{self.config['swagger_route']}/specs.json",
             view_func=SwaggerSpecsView.as_view(
-                name="specs", view_args=dict(apispec=self.apispec)
+                name="specs", view_args={"apispec": self.apispec}
             ),
         )
 
