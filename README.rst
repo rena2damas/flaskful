@@ -7,14 +7,16 @@ apispec-ui
     :alt: license: MIT
 
 A library to generate a UI interface from an `APISpec <https://github
-.com/marshmallow-code/apispec>`_ specification. As defined in the APISpec iniciative,
+.com/marshmallow-code/apispec>`_ specification. As defined in the APISpec initiative,
 it currently supports `OpenAPI Specification <https://github
-.com/OAI/OpenAPI-Specification>`_ (f.k.a. the Swagger specification).
+.com/OAI/OpenAPI-Specification>`_ (aka. Swagger specification).
 
 Features
 ========
 
 - Supports the OpenAPI Specification (versions 2 and 3)
+- Supports `SwaggerUI <https://swagger.io/tools/swagger-ui/>`_ for Swagger
+specifications (latest version - 4.0.0)
 - Currently supported frameworks include:
 
   - Flask
@@ -35,6 +37,52 @@ by default. To have it installed, do like so:
 .. code::
 
     pip install -U apispec-ui[apispec,Flask]
+
+Example usage
+=============
+
+A simple example on how to work with a ``Flask`` application:
+
+.. code-block:: python
+
+    from apispec import APISpec
+    from apispec.ext.marshmallow import MarshmallowPlugin
+    from apispec_plugins import FlaskPlugin
+    from apispec_ui.flask import Swagger
+    from flask import Flask
+
+    app =  Flask(__name__)
+    apispec = APISpec(
+        title="Test API",
+        version="0.1.0",
+        openapi_version="3.0.3",
+        plugins=(FlaskPlugin(), MarshmallowPlugin()), # optional
+    )
+    ...
+    Swagger(
+        app=app,
+        apispec=apispec,
+        config={}
+    )
+
+With this example, the application contains 2 extra views:
+
+- ``swagger.ui``: endpoint to serve ``SwaggerUI``
+- ``swagger.specs``: endpoint to server ``swagger`` specs, in ``yaml``
+
+With ``configs`` parameter one can tweak some parameters:
+
+.. code-block:: python
+
+    config = {
+        "swaggerui": True,                # disable or not SwaggerUI
+        "swagger_route": "/api/",         # change swagger routes
+        "swagger_static": "/static/",     # change location for static files
+        "swagger_favicon": "favicon.ico", # change favicon
+        "swagger_hide_bar": True,         # hide SwaggerUI top bar
+    }
+
+Alternatively, these settings can be done through ``Swagger`` environment variable.
 
 License
 =======
