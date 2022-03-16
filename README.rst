@@ -84,6 +84,28 @@ part of the app config.
 In terms of precedence, the config that takes the most precedence is the ``config``
 parameter from ``Swagger`` class, followed by the ``SWAGGER`` app config.
 
+Tests & linting
+===============
+
+Run tests with ``tox``:
+
+.. code-block:: bash
+
+    # ensure tox is installed
+    $ tox
+
+Run linter only:
+
+.. code-block:: bash
+
+    $ tox -e lint
+
+Optionally, run coverage as well with:
+
+.. code-block:: bash
+
+    $ tox -e coverage
+
 License
 =======
 
