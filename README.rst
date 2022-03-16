@@ -10,19 +10,20 @@ apispec-ui
     :alt: license: MIT
 
 A library to generate a UI interface from an `APISpec <https://github
-.com/marshmallow-code/apispec>`_ specification. As defined in the APISpec initiative,
-it currently supports `OpenAPI Specification <https://github
-.com/OAI/OpenAPI-Specification>`_ (aka. Swagger specification).
+.com/marshmallow-code/apispec>`_ specification. As per the APISpec initiative, it
+currently supports `OpenAPI Specification <https://github
+.com/OAI/OpenAPI-Specification>`_ (aka. Swagger specification) and `SwaggerUI
+<https://swagger.io/tools/swagger-ui/>`_.
 
 Features
 ========
 
-- Supports the OpenAPI Specification (versions 2 and 3)
-- Supports `SwaggerUI <https://swagger.io/tools/swagger-ui/>`_ for Swagger
-specifications (latest version - 4.0.0)
-- Currently supported frameworks include:
+* Supports the OpenAPI Specification (versions 2 and 3)
+* Supports SwaggerUI for Swagger specifications (latest version - 4.0.0)
+* Currently supported frameworks include:
 
-  - Flask
+  * Flask
+
 
 Installation
 ============
