@@ -50,13 +50,16 @@ class Swagger:
 
     def init_app(self, app):
         self.app = app
-
-        # resolve configs
-        default_config = self.DEFAULT_CONFIG.copy()
-        env_config = app.config.get("SWAGGER", {})
-        self.config = dict(**default_config, **env_config, **self.config or {})
-
+        self.init_config()
         self.register_swagger(app)
+
+    def init_config(self):
+        param_config = dict(**self.config or {})
+        default_config = self.DEFAULT_CONFIG.copy()
+        env_config = self.app.config.get("SWAGGER", {})
+        self.config = default_config
+        self.config.update(env_config)
+        self.config.update(param_config)
 
     def register_swagger(self, app):
         if self.config["swaggerui"]:
