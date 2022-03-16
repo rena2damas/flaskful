@@ -2,6 +2,9 @@
 apispec-ui
 **********
 
+.. image:: https://github.com/rena2damas/apispec-ui/actions/workflows/ci.yaml/badge.svg
+    :target: https://github.com/rena2damas/apispec-plugins/actions/workflows/ci.yaml
+    :alt: CI
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
     :alt: code style: black
