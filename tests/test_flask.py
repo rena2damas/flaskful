@@ -90,9 +90,9 @@ class TestFlask:
             "swagger_route": "/test/docs/",
         }
         app.config["SWAGGER"] = config
-        swagger = Swagger(app=app, apispec=spec, config={
-            "swagger_route": "/test/docs/v2/"
-        })
+        swagger = Swagger(
+            app=app, apispec=spec, config={"swagger_route": "/test/docs/v2/"}
+        )
 
         assert swagger.config == {
             "swaggerui": True,
