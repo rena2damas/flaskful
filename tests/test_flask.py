@@ -1,4 +1,3 @@
-import os
 import pytest
 
 from apispec import APISpec
@@ -48,7 +47,14 @@ class TestFlask:
             assert url_for("swagger.ui") == "/swagger/"
             assert url_for("swagger.specs") == "/swagger/specs.json"
 
-    def test_custom_configs(self, app, spec):
+    def test_no_swagger_ui(self, app, spec):
+        Swagger(app=app, apispec=spec, config={"swaggerui": False})
+
+        assert url_for("swagger.specs") == "/swagger/specs.json"
+        with pytest.raises(BuildError):
+            url_for("swagger.ui")
+
+    def test_valid_config(self, app, spec):
         Swagger(
             app=app,
             apispec=spec,
@@ -61,13 +67,6 @@ class TestFlask:
 
         assert url_for("swagger.ui") == "/test/docs/"
         assert url_for("swagger.specs") == "/test/docs/specs.json"
-
-    def test_no_swagger_ui(self, app, spec):
-        Swagger(app=app, apispec=spec, config={"swaggerui": False})
-
-        assert url_for("swagger.specs") == "/swagger/specs.json"
-        with pytest.raises(BuildError):
-            url_for("swagger.ui")
 
     def test_default_config(self, app, spec):
         swagger = Swagger(app=app, apispec=spec, config={})
