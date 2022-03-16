@@ -51,19 +51,15 @@ A simple example on how to work with a ``Flask`` application:
     from apispec_ui.flask import Swagger
     from flask import Flask
 
-    app =  Flask(__name__)
+    app = Flask(__name__)
     apispec = APISpec(
         title="Test API",
         version="0.1.0",
         openapi_version="3.0.3",
-        plugins=(FlaskPlugin(), MarshmallowPlugin()), # optional
+        plugins=(FlaskPlugin(), MarshmallowPlugin()),  # optional
     )
     ...
-    Swagger(
-        app=app,
-        apispec=apispec,
-        config={}
-    )
+    Swagger(app=app, apispec=apispec, config={})
 
 With this example, the application contains 2 extra views:
 
@@ -75,11 +71,11 @@ With ``configs`` parameter one can tweak some parameters:
 .. code-block:: python
 
     config = {
-        "swaggerui": True,                # disable or not SwaggerUI
-        "swagger_route": "/api/",         # change swagger routes
-        "swagger_static": "/static/",     # change location for static files
-        "swagger_favicon": "favicon.ico", # change favicon
-        "swagger_hide_bar": True,         # hide SwaggerUI top bar
+        "swaggerui": True,  # disable or not SwaggerUI
+        "swagger_route": "/api/",  # change swagger routes
+        "swagger_static": "/static/",  # change location for static files
+        "swagger_favicon": "favicon.ico",  # change favicon
+        "swagger_hide_bar": True,  # hide SwaggerUI top bar
     }
 
 Alternatively, these settings can be done through ``Swagger`` environment variable.
