@@ -26,17 +26,17 @@ Installation
 
 Install the package directly from ``PyPI`` (recommended):
 
-.. code::
+.. code-block:: bash
 
-    pip install -U apispec-ui
+    $ pip install -U apispec-ui
 
 
 Plugin dependencies like ``apispec`` and ``Flask`` are not installed with the package
 by default. To have it installed, do like so:
 
-.. code::
+.. code-block:: bash
 
-    pip install -U apispec-ui[apispec,Flask]
+    $ pip install -U apispec-ui[apispec,Flask]
 
 Example usage
 =============
@@ -71,7 +71,7 @@ With ``configs`` parameter one can tweak some parameters:
 .. code-block:: python
 
     config = {
-        "swaggerui": True,  # disable or not SwaggerUI
+        "swaggerui": True,  # enable/disable SwaggerUI
         "swagger_route": "/api/",  # change swagger routes
         "swagger_static": "/static/",  # change location for static files
         "swagger_favicon": "favicon.ico",  # change favicon
