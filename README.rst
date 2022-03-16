@@ -6,7 +6,7 @@ apispec-ui
     :target: https://pypi.org/project/apispec-ui
     :alt: PyPI version
 .. image:: https://github.com/rena2damas/apispec-ui/actions/workflows/ci.yaml/badge.svg
-    :target: https://github.com/rena2damas/apispec-plugins/actions/workflows/ci.yaml
+    :target: https://github.com/rena2damas/apispec-ui/actions/workflows/ci.yaml
     :alt: CI
 .. image:: https://codecov.io/gh/rena2damas/apispec-ui/branch/master/graph/badge.svg
     :target: https://app.codecov.io/gh/rena2damas/apispec-ui/branch/master
