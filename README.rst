@@ -78,7 +78,11 @@ With ``configs`` parameter one can tweak some parameters:
         "swagger_hide_bar": True,  # hide SwaggerUI top bar
     }
 
-Alternatively, these settings can be done through ``Swagger`` environment variable.
+These settings can also be configured through the ``SWAGGER`` config variable that is
+part of the app config.
+
+In terms of precedence, the config that takes the most precedence is the ``config``
+parameter from ``Swagger`` class, followed by the ``SWAGGER`` app config.
 
 License
 =======
