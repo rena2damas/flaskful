@@ -37,8 +37,8 @@ class SwaggerSpecsView(MethodView):
 class Swagger:
     DEFAULT_CONFIG = {
         "swaggerui": True,
-        "swagger_static": "/swagger_static/",
         "swagger_route": "/swagger/",
+        "swagger_static": "/swagger_static/",
     }
 
     def __init__(self, apispec, app=None, config=None):
