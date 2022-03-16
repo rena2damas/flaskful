@@ -2,6 +2,9 @@
 apispec-ui
 **********
 
+.. image:: https://img.shields.io/pypi/v/apispec-ui
+    :target: https://pypi.org/project/apispec-ui
+    :alt: PyPI version
 .. image:: https://github.com/rena2damas/apispec-ui/actions/workflows/ci.yaml/badge.svg
     :target: https://github.com/rena2damas/apispec-plugins/actions/workflows/ci.yaml
     :alt: CI
