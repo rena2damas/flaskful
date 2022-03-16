@@ -67,7 +67,7 @@ A simple example on how to work with a ``Flask`` application:
 With this example, the application contains 2 extra views:
 
 - ``swagger.ui``: endpoint to serve ``SwaggerUI``
-- ``swagger.specs``: endpoint to server ``swagger`` specs, in ``yaml``
+- ``swagger.specs``: endpoint to serve ``swagger`` specs, in ``yaml``
 
 With ``configs`` parameter one can tweak some parameters:
 
