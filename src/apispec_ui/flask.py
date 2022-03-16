@@ -44,16 +44,17 @@ class Swagger:
     def __init__(self, apispec, app=None, config=None):
         self.apispec = apispec
         self.app = app
-        default_config = self.DEFAULT_CONFIG.copy()
-        self.config = dict(default_config, **config) if config else default_config
+        self.config = config
         if app:
             self.init_app(app)
 
     def init_app(self, app):
         self.app = app
 
-        # use SWAGGER as environment variable for configs
-        self.config.update(app.config.get("SWAGGER", {}))
+        # resolve configs
+        default_config = self.DEFAULT_CONFIG.copy()
+        env_config = app.config.get("SWAGGER", {})
+        self.config = dict(**default_config, **env_config, **self.config or {})
 
         self.register_swagger(app)
 
