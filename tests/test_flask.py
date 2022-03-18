@@ -31,6 +31,8 @@ class TestFlask:
 
         assert url_for("swagger.ui") == "/swagger"
         assert url_for("swagger.specs") == "/swagger/specs.json"
+        assert client.get(url_for("swagger.ui")).status_code == 200
+        assert client.get(url_for("swagger.specs")).status_code == 200
         assert client.get(url_for("swagger.specs")).json == spec.to_dict()
         assert "text/html" in client.get(url_for("swagger.ui")).headers["content-type"]
         assert (
@@ -60,8 +62,8 @@ class TestFlask:
             apispec=spec,
             config={
                 "swaggerui": True,
-                "swagger_static": "/test_static",
                 "swagger_route": "/test/docs",
+                "swagger_static": "/test_static",
             },
         )
 
@@ -75,8 +77,8 @@ class TestFlask:
 
     def test_environment_config(self, app, spec):
         config = {
-            "swagger_static": "/test_static",
             "swagger_route": "/test/docs",
+            "swagger_static": "/test_static",
         }
         app.config["SWAGGER"] = config
         swagger = Swagger(app=app, apispec=spec)
@@ -85,8 +87,8 @@ class TestFlask:
 
     def test_config_mesh(self, app, spec):
         config = {
-            "swagger_static": "/test_static",
             "swagger_route": "/test/docs",
+            "swagger_static": "/test_static",
         }
         app.config["SWAGGER"] = config
         swagger = Swagger(
@@ -95,6 +97,40 @@ class TestFlask:
 
         assert swagger.config == {
             "swaggerui": True,
-            "swagger_static": "/test_static",
             "swagger_route": "/test/docs/v2",
+            "swagger_static": "/test_static",
         }
+
+    def test_swagger_endpoints_with_trailing_slashes(self, app, spec):
+        Swagger(
+            app=app,
+            apispec=spec,
+            config={
+                "swagger_route": "/test/docs/",
+                "swagger_static": "/test_static/",
+            },
+        )
+        client = app.test_client()
+
+        assert url_for("swagger.ui") == "/test/docs"
+        assert url_for("swagger.static", filename="VERSION") == "/test_static/VERSION"
+        assert client.get("/test/docs").status_code == 200
+        assert client.get("/test/docs/").status_code == 200
+
+    def test_url_prefix(self, app, spec):
+        Swagger(
+            app=app,
+            apispec=spec,
+            config={
+                "url_prefix": "/test-app/v1",
+                "swagger_route": "/",
+                "swagger_static": "/static",
+            },
+        )
+        client = app.test_client()
+
+        assert url_for("swagger.ui") == "/test-app/v1"
+        assert url_for("swagger.static", filename="VERSION") == \
+               "/test-app/v1/static/VERSION"
+        assert client.get("/test-app/v1").status_code == 200
+        assert client.get("/test-app/v1/").status_code == 200
