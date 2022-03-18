@@ -29,7 +29,7 @@ class TestFlask:
         Swagger(app=app, apispec=spec, config={})
         client = app.test_client()
 
-        assert url_for("swagger.ui") == "/swagger/"
+        assert url_for("swagger.ui") == "/swagger"
         assert url_for("swagger.specs") == "/swagger/specs.json"
         assert client.get(url_for("swagger.specs")).json == spec.to_dict()
         assert "text/html" in client.get(url_for("swagger.ui")).headers["content-type"]
@@ -44,7 +44,7 @@ class TestFlask:
         swagger.init_app(app)
 
         with app.test_request_context():
-            assert url_for("swagger.ui") == "/swagger/"
+            assert url_for("swagger.ui") == "/swagger"
             assert url_for("swagger.specs") == "/swagger/specs.json"
 
     def test_no_swagger_ui(self, app, spec):
@@ -60,12 +60,12 @@ class TestFlask:
             apispec=spec,
             config={
                 "swaggerui": True,
-                "swagger_static": "/test_static/",
-                "swagger_route": "/test/docs/",
+                "swagger_static": "/test_static",
+                "swagger_route": "/test/docs",
             },
         )
 
-        assert url_for("swagger.ui") == "/test/docs/"
+        assert url_for("swagger.ui") == "/test/docs"
         assert url_for("swagger.specs") == "/test/docs/specs.json"
 
     def test_default_config(self, app, spec):
@@ -75,8 +75,8 @@ class TestFlask:
 
     def test_environment_config(self, app, spec):
         config = {
-            "swagger_static": "/test_static/",
-            "swagger_route": "/test/docs/",
+            "swagger_static": "/test_static",
+            "swagger_route": "/test/docs",
         }
         app.config["SWAGGER"] = config
         swagger = Swagger(app=app, apispec=spec)
@@ -85,16 +85,16 @@ class TestFlask:
 
     def test_config_mesh(self, app, spec):
         config = {
-            "swagger_static": "/test_static/",
-            "swagger_route": "/test/docs/",
+            "swagger_static": "/test_static",
+            "swagger_route": "/test/docs",
         }
         app.config["SWAGGER"] = config
         swagger = Swagger(
-            app=app, apispec=spec, config={"swagger_route": "/test/docs/v2/"}
+            app=app, apispec=spec, config={"swagger_route": "/test/docs/v2"}
         )
 
         assert swagger.config == {
             "swaggerui": True,
-            "swagger_static": "/test_static/",
-            "swagger_route": "/test/docs/v2/",
+            "swagger_static": "/test_static",
+            "swagger_route": "/test/docs/v2",
         }
