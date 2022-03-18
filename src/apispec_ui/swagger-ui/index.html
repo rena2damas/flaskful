@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ title }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ swagger_static }}/swagger-ui.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('swagger.static', filename='swagger-ui.css') }}"/>
     <link rel="icon" href="{{ favicon }}" sizes="64x64 32x32 16x16"/>
     <style>
         html {
@@ -26,31 +27,32 @@
 </head>
 
 <body>
-  <div id="swagger-ui"></div>
-
-  <script src="{{ swagger_static }}/swagger-ui-bundle.js" charset="UTF-8"></script>
-  <script src="{{ swagger_static }}/swagger-ui-standalone-preset.js"
-          charset="UTF-8"></script>
-  <script>
-      window.onload = function () {
-          const ui = SwaggerUIBundle({
-              url: "{{ url }}",
-              dom_id: "#swagger-ui",
-              deepLinking: true,
-              presets: [
-                  SwaggerUIBundle.presets.apis,
-                  SwaggerUIStandalonePreset
-              ],
-              plugins: [
-                  SwaggerUIBundle.plugins.DownloadUrl
-              ],
-              {% if not swagger_hide_bar %}
+<div id="swagger-ui"></div>
+<script src="{{ url_for('swagger.static', filename='swagger-ui-bundle.js') }}"
+        charset="UTF-8"></script>
+<script
+        src="{{ url_for('swagger.static', filename='swagger-ui-standalone-preset.js') }}"
+        charset="UTF-8"></script>
+<script>
+    window.onload = function () {
+        const ui = SwaggerUIBundle({
+            url: "{{ url }}",
+            dom_id: "#swagger-ui",
+            deepLinking: true,
+            presets: [
+                SwaggerUIBundle.presets.apis,
+                SwaggerUIStandalonePreset
+            ],
+            plugins: [
+                SwaggerUIBundle.plugins.DownloadUrl
+            ],
+            {% if not swagger_hide_bar %}
                 layout: "StandaloneLayout"
-              {% endif %}
-          });
+            {% endif %}
+        });
 
-          window.ui = ui;
-      };
-  </script>
+        window.ui = ui;
+    };
+</script>
 </body>
 </html>
