@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.2 (2022-03-18)
+
+* Load static files properly in swaggerUI view
+
 ## 0.1.1 (2022-03-18)
 
 * Remove trailing spaces from default swagger route and static
