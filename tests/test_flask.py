@@ -130,7 +130,9 @@ class TestFlask:
         client = app.test_client()
 
         assert url_for("swagger.ui") == "/test-app/v1"
-        assert url_for("swagger.static", filename="VERSION") == \
-               "/test-app/v1/static/VERSION"
+        assert (
+            url_for("swagger.static", filename="VERSION")
+            == "/test-app/v1/static/VERSION"
+        )
         assert client.get("/test-app/v1").status_code == 200
         assert client.get("/test-app/v1/").status_code == 200
