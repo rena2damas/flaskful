@@ -1,6 +1,8 @@
 from flask import Blueprint, jsonify, render_template, url_for
 from flask.views import MethodView
 
+from apispec_ui import utils
+
 
 class SwaggerUIView(MethodView):
     def __init__(self, *args, **kwargs):
@@ -63,23 +65,23 @@ class Swagger:
 
     def register_swagger(self, app):
         if self.config["swaggerui"]:
+            static_route = utils.url_strip(self.config["swagger_static"])
             blueprint = Blueprint(
                 "swagger",
                 __name__,
                 url_prefix=self.config.get("url_prefix", ""),
                 template_folder="swagger-ui/",
                 static_folder="swagger-ui/",
-                static_url_path=self.config["swagger_static"],
+                static_url_path=static_route,
             )
 
-            blueprint.add_url_rule(
-                rule=self.config["swagger_route"],
-                endpoint="ui",
-                view_func=SwaggerUIView().as_view(
-                    name="swaggerui",
-                    view_args={"config": self.config, "apispec": self.apispec},
-                ),
+            view_func = SwaggerUIView().as_view(
+                name="swaggerui",
+                view_args={"config": self.config, "apispec": self.apispec},
             )
+            route = utils.url_strip(self.config["swagger_route"])
+            blueprint.add_url_rule(route, endpoint="ui", view_func=view_func)
+            blueprint.add_url_rule(route + "/", endpoint="ui", view_func=view_func)
 
         else:
             blueprint = Blueprint("swagger", __name__)
