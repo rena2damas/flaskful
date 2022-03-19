@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template, url_for
+from flask import Blueprint, jsonify, redirect, render_template, url_for
 from flask.views import MethodView
 
 from apispec_ui import utils
@@ -65,11 +65,12 @@ class Swagger:
 
     def register_swagger(self, app):
         if self.config["swaggerui"]:
-            static_route = utils.url_strip(self.config["swagger_static"])
+            url_prefix = utils.url_parse(self.config.get("url_prefix", ""))
+            static_route = utils.url_parse(self.config["swagger_static"])
             blueprint = Blueprint(
                 "swagger",
                 __name__,
-                url_prefix=self.config.get("url_prefix", ""),
+                url_prefix=url_prefix,
                 template_folder="swagger-ui/",
                 static_folder="swagger-ui/",
                 static_url_path=static_route,
@@ -79,9 +80,11 @@ class Swagger:
                 name="swaggerui",
                 view_args={"config": self.config, "apispec": self.apispec},
             )
-            route = utils.url_strip(self.config["swagger_route"])
-            blueprint.add_url_rule(route, endpoint="ui", view_func=view_func)
-            blueprint.add_url_rule(route + "/", endpoint="ui", view_func=view_func)
+            route1 = utils.url_parse(self.config["swagger_route"])
+            route2 = route1.rstrip("/")
+            blueprint.add_url_rule(route1, endpoint="ui", view_func=view_func)
+            if route2:
+                blueprint.add_url_rule(route2, view_func=lambda: redirect(route1, 308))
 
         else:
             blueprint = Blueprint("swagger", __name__)
