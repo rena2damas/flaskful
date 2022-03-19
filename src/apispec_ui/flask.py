@@ -80,11 +80,8 @@ class Swagger:
                 name="swaggerui",
                 view_args={"config": self.config, "apispec": self.apispec},
             )
-            route1 = utils.url_parse(self.config["swagger_route"])
-            route2 = route1.rstrip("/")
-            blueprint.add_url_rule(route1, endpoint="ui", view_func=view_func)
-            if route2:
-                blueprint.add_url_rule(route2, view_func=lambda: redirect(route1, 308))
+            route = utils.url_parse(self.config["swagger_route"])
+            blueprint.add_url_rule(route, endpoint="ui", view_func=view_func)
 
         else:
             blueprint = Blueprint("swagger", __name__)
