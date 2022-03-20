@@ -2,6 +2,12 @@
 CHANGELOG
 *********
 
+0.1.3 (2022-03-20)
+------------------
+
+* Fix trailing slash on swagger endpoint
+* Change CHANGELOG format
+
 0.1.2 (2022-03-18)
 ------------------
 
