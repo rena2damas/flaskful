@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, redirect, render_template, url_for
+from flask import Blueprint, jsonify, render_template, url_for
 from flask.views import MethodView
 
 from apispec_ui import utils
