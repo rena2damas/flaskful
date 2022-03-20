@@ -1,4 +1,4 @@
-from apispec_ui.utils import *
+from apispec_ui.utils import url_parse
 
 
 def test_parse_url():
