@@ -36,7 +36,7 @@ classifiers = [
 [tool.poetry.dependencies]
 apispec = { extras = ["yaml"], version = "^5.2.2", optional = true }
 environs = "^9.5.0"
-Flask = { version = "^2.1.3", optional = true }
+Flask = { version = "^2.2.2", optional = true }
 gunicorn = "^20.1.0"
 python = "^3.7"
 
