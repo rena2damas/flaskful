@@ -19,14 +19,13 @@ apispec-ui
     :alt: license: MIT
 
 A library to generate a UI interface from an `APISpec <https://github
-.com/marshmallow-code/apispec>`_ specification. As per the APISpec initiative, it
+.com/marshmallow-code/apispec>`__ specification. As per the APISpec initiative, it
 currently supports `OpenAPI Specification <https://github
-.com/OAI/OpenAPI-Specification>`_ (aka. Swagger specification) and `SwaggerUI
-<https://swagger.io/tools/swagger-ui/>`_.
+.com/OAI/OpenAPI-Specification>`__ (aka. Swagger specification) and `SwaggerUI
+<https://swagger.io/tools/swagger-ui/>`__.
 
 Features
 ========
-
 * Supports the OpenAPI Specification (versions 2 and 3)
 * Supports SwaggerUI for Swagger specifications (latest version - 4.0.0)
 * Currently supported frameworks include:
@@ -36,7 +35,6 @@ Features
 
 Installation
 ============
-
 Install the package directly from ``PyPI`` (recommended):
 
 .. code-block:: bash
@@ -53,7 +51,6 @@ by default. To have it installed, do like so:
 
 Example usage
 =============
-
 A simple example on how to work with a ``Flask`` application:
 
 .. code-block:: python
@@ -99,7 +96,6 @@ parameter from ``Swagger`` class, followed by the ``SWAGGER`` app config.
 
 Tests & linting
 ===============
-
 Run tests with ``tox``:
 
 .. code-block:: bash
@@ -121,5 +117,4 @@ Optionally, run coverage as well with:
 
 License
 =======
-
-MIT licensed. See `LICENSE <LICENSE>`_.
+MIT licensed. See `LICENSE <LICENSE>`__.
