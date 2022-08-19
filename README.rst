@@ -94,7 +94,7 @@ part of the app config.
 In terms of precedence, the config that takes the most precedence is the ``config``
 parameter from ``Swagger`` class, followed by the ``SWAGGER`` app config.
 
-Tests & linting
+Tests & linting 🚥
 ===============
 Run tests with ``tox``:
 
