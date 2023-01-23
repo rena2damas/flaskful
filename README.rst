@@ -5,11 +5,11 @@ apispec-ui
 .. image:: https://img.shields.io/pypi/v/apispec-ui
     :target: https://pypi.org/project/apispec-ui
     :alt: PyPI version
-.. image:: https://github.com/rena2damas/apispec-ui/actions/workflows/ci.yaml/badge.svg
-    :target: https://github.com/rena2damas/apispec-ui/actions/workflows/ci.yaml
+.. image:: https://github.com/codectl/apispec-ui/actions/workflows/ci.yaml/badge.svg
+    :target: https://github.com/codectl/apispec-ui/actions/workflows/ci.yaml
     :alt: CI
-.. image:: https://codecov.io/gh/rena2damas/apispec-ui/branch/master/graph/badge.svg
-    :target: https://app.codecov.io/gh/rena2damas/apispec-ui/branch/master
+.. image:: https://codecov.io/gh/codectl/apispec-ui/branch/master/graph/badge.svg
+    :target: https://app.codecov.io/gh/codectl/apispec-ui/branch/master
     :alt: codecov
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
