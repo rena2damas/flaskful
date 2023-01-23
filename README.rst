@@ -95,7 +95,7 @@ In terms of precedence, the config that takes the most precedence is the ``confi
 parameter from ``Swagger`` class, followed by the ``SWAGGER`` app config.
 
 Tests & linting 🚥
-===============
+==================
 Run tests with ``tox``:
 
 .. code-block:: bash
