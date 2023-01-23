@@ -9,7 +9,7 @@ packages = [
     { include = "*", from = "src" }
 ]
 homepage = ""
-repository = "https://github.com/rena2damas/apispec-ui"
+repository = "https://github.com/codectl/apispec-ui"
 documentation = ""
 keywords = [
     "flaskful",
@@ -51,7 +51,7 @@ pre-commit = "^2.21.0"
 pytest = "^7.2.1"
 
 [tool.poetry.urls]
-issues = "https://github.com/rena2damas/apispec-ui/issues"
+issues = "https://github.com/codectl/apispec-ui/issues"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
