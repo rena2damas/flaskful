@@ -30,7 +30,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10"
@@ -41,7 +40,7 @@ apispec = { extras = ["yaml"], version = "^6.0.2", optional = true }
 environs = "^9.5.0"
 Flask = { version = "^2.2.2", optional = true }
 gunicorn = "^20.1.0"
-python = "^3.7"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 apispec = { extras = ["yaml"], version = "^6.0.2" }
