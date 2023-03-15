@@ -63,9 +63,9 @@ A simple example on how to work with a ``Flask`` application:
 
     app = Flask(__name__)
     apispec = APISpec(
-        title="Test API",
-        version="0.1.0",
-        openapi_version="3.0.3",
+        title="Pet Store",
+        version="1.0.0",
+        openapi_version="3.1.0",
         plugins=(FlaskPlugin(), MarshmallowPlugin()),  # optional
     )
     ...
