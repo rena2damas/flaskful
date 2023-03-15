@@ -20,6 +20,8 @@ apispec-ui
 .. image:: https://img.shields.io/badge/OAS-2_|_3-14ACBB.svg
     :target: https://github.com/OAI/OpenAPI-Specification
     :alt: OpenAPI Specification 2/3 compatible
+.. image:: https://img.shields.io/pypi/pyversions/apispec-ui
+   :alt: Python compatibility
 
 A library to generate a UI interface from an `APISpec <https://github
 .com/marshmallow-code/apispec>`__ specification. As per the APISpec initiative, it
