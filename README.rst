@@ -27,7 +27,7 @@ currently supports `OpenAPI Specification <https://github
 Features
 ========
 * Support for the OpenAPI Specification (versions 2 and 3)
-* Compatibility with SwaggerUI (latest version - 4.0.0)
+* Compatibility with SwaggerUI (latest version - 4.18.1)
 * Support for frameworks which include:
 
   * `Flask <https://pypi.org/project/Flask>`__
