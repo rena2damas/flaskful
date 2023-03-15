@@ -15,7 +15,7 @@ apispec-ui
     :target: https://github.com/OAI/OpenAPI-Specification
     :alt: OpenAPI Specification 2/3 compatible
 .. image:: https://img.shields.io/pypi/pyversions/apispec-ui
-   :alt: Python compatibility
+    :alt: Python compatibility
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/psf/black
     :alt: code style: black
