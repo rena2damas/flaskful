@@ -26,11 +26,11 @@ currently supports `OpenAPI Specification <https://github
 
 Features
 ========
-* Supports the OpenAPI Specification (versions 2 and 3)
-* Supports SwaggerUI for Swagger specifications (latest version - 4.0.0)
-* Currently supported frameworks include:
+* Support for the OpenAPI Specification (versions 2 and 3)
+* Compatibility with SwaggerUI (latest version - 4.0.0)
+* Support for frameworks which include:
 
-  * Flask
+  * `Flask <https://pypi.org/project/Flask>`__
 
 
 Installation
@@ -42,12 +42,12 @@ Install the package directly from ``PyPI`` (recommended):
     $ pip install -U apispec-ui
 
 
-Plugin dependencies like ``apispec`` and ``Flask`` are not installed with the package
-by default. To have it installed, do like so:
+Plugin dependencies like ``apispec`` and ``Flask`` are not installed with the package by default. To
+have ``apispec`` and ``Flask`` installed, run:
 
 .. code-block:: bash
 
-    $ pip install -U apispec-ui[apispec,Flask]
+    $ pip install -U apispec-ui[apispec,flask]
 
 Example usage
 =============
