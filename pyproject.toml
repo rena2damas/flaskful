@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "apispec-ui"
-version = "1.0.0"
+version = "1.0.1"
 description = "Generate UI interactive API's from APISpec specifications."
 authors = ["Renato Damas <rena2damas@gmail.com>"]
 license = "MIT"
