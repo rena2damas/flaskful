@@ -45,7 +45,7 @@ python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 apispec = { extras = ["yaml"], version = "^6.3.0" }
-coverage = "^7.2.7"
+coverage = "^7.3.0"
 flask = "^2.2.3"
 pre-commit = "^3.3.3"
 pytest = "^7.4.0"
