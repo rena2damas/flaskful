@@ -39,14 +39,14 @@ classifiers = [
 [tool.poetry.dependencies]
 apispec = { extras = ["yaml"], version = "^6.3.0", optional = true }
 environs = "^9.5.0"
-flask = { version = "^2.2.3", optional = true }
+flask = { version = ">=2.2.3,<4.0.0", optional = true }
 gunicorn = ">=20.1,<22.0"
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 apispec = { extras = ["yaml"], version = "^6.3.0" }
 coverage = "^7.3.0"
-flask = "^2.2.3"
+flask = ">=2.2.3,<4.0.0"
 pre-commit = "^3.3.3"
 pytest = "^7.4.0"
 
